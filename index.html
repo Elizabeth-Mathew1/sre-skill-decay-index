@@ -7,16 +7,9 @@
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700;800&family=Syne:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #0a0a0b;
-  --surface: #111113;
-  --surface-2: #19191d;
-  --border: #2a2a30;
-  --text: #e8e6e3;
-  --text-dim: #7a7880;
-  --accent: #ff3d3d;
-  --green: #00ff9d;
-  --amber: #ffb020;
-  --terminal-green: #39ff14;
+  --bg: #0a0a0b; --surface: #111113; --surface-2: #19191d; --border: #2a2a30;
+  --text: #e8e6e3; --text-dim: #7a7880; --accent: #ff3d3d;
+  --green: #00ff9d; --amber: #ffb020; --terminal-green: #39ff14;
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { background: var(--bg); color: var(--text); font-family: "Outfit", sans-serif; scroll-behavior: smooth; }
@@ -25,11 +18,13 @@ body::before { content: ""; position: fixed; inset: 0; background-image: url("da
 body::after { content: ""; position: fixed; inset: 0; background: repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.03) 2px,rgba(0,0,0,0.03) 4px); pointer-events: none; z-index: 9998; }
 .container { max-width: 720px; margin: 0 auto; padding: 0 24px; }
 
+
+/* HERO */
 .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; position: relative; padding: 60px 24px; }
 .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: var(--surface); border: 1px solid var(--border); border-radius: 100px; padding: 8px 18px; font-family: "JetBrains Mono", monospace; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 40px; animation: fadeDown 0.8s ease; }
 .hero-badge .pulse { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; animation: pulse 2s ease-in-out infinite; }
-@keyframes pulse { 0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(255,61,61,0.4); } 50% { opacity: 0.6; box-shadow: 0 0 0 6px rgba(255,61,61,0); } }
-.hero h1 { font-family: "Outfit", sans-serif; font-size: clamp(42px, 8vw, 80px); font-weight: 800; line-height: 0.95; letter-spacing: -0.03em; margin-bottom: 12px; animation: fadeUp 0.8s ease 0.1s both; }
+@keyframes pulse { 0%,100% { opacity:1; box-shadow:0 0 0 0 rgba(255,61,61,0.4); } 50% { opacity:0.6; box-shadow:0 0 0 6px rgba(255,61,61,0); } }
+.hero h1 { font-family: "Outfit", sans-serif; font-size: clamp(42px,8vw,80px); font-weight: 800; line-height: 0.95; letter-spacing: -0.03em; margin-bottom: 12px; animation: fadeUp 0.8s ease 0.1s both; }
 .hero h1 .line-1 { display: block; color: var(--text-dim); font-size: 0.45em; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 12px; }
 .hero h1 .accent { color: var(--accent); position: relative; }
 .hero h1 .accent::after { content: ""; position: absolute; bottom: 2px; left: 0; right: 0; height: 4px; background: var(--accent); opacity: 0.3; border-radius: 2px; }
@@ -37,36 +32,74 @@ body::after { content: ""; position: fixed; inset: 0; background: repeating-line
 .hero-sub strong { color: var(--text); font-weight: 600; }
 .start-btn { display: inline-flex; align-items: center; gap: 12px; background: var(--accent); color: #fff; border: none; padding: 18px 40px; font-family: "JetBrains Mono", monospace; font-size: 13px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; border-radius: 6px; cursor: pointer; transition: all 0.3s ease; animation: fadeUp 0.8s ease 0.4s both; position: relative; overflow: hidden; }
 .start-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(255,61,61,0.3); }
-.start-btn::before { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent); transform: translateX(-100%); transition: transform 0.6s ease; }
+.start-btn::before { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg,transparent,rgba(255,255,255,0.1),transparent); transform: translateX(-100%); transition: transform 0.6s ease; }
 .start-btn:hover::before { transform: translateX(100%); }
-.scroll-hint { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 8px; color: var(--text-dim); font-family: "JetBrains Mono", monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; animation: fadeUp 0.8s ease 0.6s both; }
-.scroll-hint .arrow { width: 1px; height: 30px; background: linear-gradient(to bottom, var(--text-dim), transparent); animation: scrollBounce 2s ease-in-out infinite; }
-@keyframes scrollBounce { 0%, 100% { transform: translateY(0); opacity: 1; } 50% { transform: translateY(8px); opacity: 0.4; } }
 .stats-bar { display: flex; justify-content: center; gap: 40px; margin-top: 50px; animation: fadeUp 0.8s ease 0.5s both; }
 .stat-item { text-align: center; }
 .stat-num { font-family: "JetBrains Mono", monospace; font-size: 22px; font-weight: 700; color: var(--accent); }
 .stat-label { font-size: 11px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 4px; }
+.scroll-hint { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 8px; color: var(--text-dim); font-family: "JetBrains Mono", monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; animation: fadeUp 0.8s ease 0.6s both; }
+.scroll-hint .arrow { width: 1px; height: 30px; background: linear-gradient(to bottom,var(--text-dim),transparent); animation: scrollBounce 2s ease-in-out infinite; }
+@keyframes scrollBounce { 0%,100% { transform:translateY(0); opacity:1; } 50% { transform:translateY(8px); opacity:0.4; } }
 
+
+/* OLLY MASCOTS */
+.olly-container { position: relative; display: flex; justify-content: center; margin-bottom: 24px; animation: fadeUp 0.8s ease 0.3s both; }
+.olly-hero { width: 220px; height: auto; max-height: 180px; object-fit: contain; animation: ollyFloat 4s ease-in-out infinite; filter: drop-shadow(0 8px 30px rgba(255,61,61,0.15)); }
+.olly-quiz { width: 100px; height: auto; max-height: 100px; object-fit: contain; position: absolute; right: -60px; top: -15px; animation: ollyBob 3s ease-in-out infinite; filter: drop-shadow(0 4px 16px rgba(68,97,215,0.2)); border-radius: 12px; }
+.olly-result { width: 160px; height: auto; max-height: 180px; object-fit: contain; margin: 0 auto 20px; display: block; animation: ollyReveal 0.8s ease both, ollyBob 3s ease-in-out infinite 0.8s; }
+.olly-accent { width: 60px; height: auto; object-fit: contain; animation: ollyBob 4s ease-in-out infinite; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3)); }
+.olly-cta { width: 100px; height: auto; object-fit: contain; animation: ollyGlide 5s ease-in-out infinite; filter: drop-shadow(0 4px 12px rgba(68,97,215,0.3)); }
+.olly-recent { width: 70px; height: auto; object-fit: contain; animation: ollyWave 2s ease-in-out infinite; }
+@keyframes ollyFloat { 0%,100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-10px) rotate(1deg); } }
+@keyframes ollyBob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+@keyframes ollyReveal { from { opacity: 0; transform: scale(0.6) translateY(20px); filter: blur(8px); } to { opacity: 1; transform: scale(1) translateY(0); filter: blur(0); } }
+@keyframes ollyGlide { 0%,100% { transform: translateX(0) translateY(0) rotate(-3deg); } 25% { transform: translateX(8px) translateY(-6px) rotate(0deg); } 75% { transform: translateX(-8px) translateY(-4px) rotate(-5deg); } }
+@keyframes ollyWave { 0%,100% { transform: rotate(0deg); } 25% { transform: rotate(5deg); } 75% { transform: rotate(-3deg); } }
+.result-critical-olly { filter: grayscale(0.4) brightness(0.6) drop-shadow(0 0 20px rgba(255,61,61,0.4)); }
+
+/* Start button area with mascot */
+.start-area { display: flex; align-items: center; justify-content: center; gap: 16px; animation: fadeUp 0.8s ease 0.4s both; }
+
+/* CTA section olly */
+.cta-olly-wrap { display: flex; align-items: center; gap: 20px; }
+.cta-olly-wrap .result-cta { flex: 1; }
+
+/* Recent section olly */
+.recent-header { display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 24px; }
+
+@media (max-width: 768px) {
+  .olly-quiz { position: static; width: 80px; max-height: 80px; margin: 0 auto 12px; display: block; }
+  .olly-hero { width: 180px; max-height: 150px; }
+  .olly-result { width: 130px; max-height: 150px; }
+  .cta-olly-wrap { flex-direction: column; }
+  .start-area { flex-direction: column; }
+}
+
+/* QUIZ */
 #quiz-section { display: none; padding: 80px 0 120px; }
 .progress-bar-container { position: fixed; top: 0; left: 0; right: 0; height: 3px; background: var(--surface); z-index: 100; }
-.progress-bar-fill { height: 100%; background: var(--accent); transition: width 0.5s cubic-bezier(0.22, 1, 0.36, 1); box-shadow: 0 0 12px rgba(255,61,61,0.4); }
+.progress-bar-fill { height: 100%; background: var(--accent); transition: width 0.5s cubic-bezier(0.22,1,0.36,1); box-shadow: 0 0 12px rgba(255,61,61,0.4); }
 .question-counter { font-family: "JetBrains Mono", monospace; font-size: 11px; color: var(--text-dim); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 16px; }
+.question-header { position: relative; }
 .question-card { display: none; animation: cardIn 0.5s ease; }
 .question-card.active { display: block; }
-@keyframes cardIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes cardIn { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
 .question-scenario { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 20px 24px; margin-bottom: 32px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--terminal-green); line-height: 1.7; position: relative; overflow: hidden; }
 .question-scenario::before { content: ">"; position: absolute; top: 20px; left: 12px; color: var(--text-dim); animation: blink 1.2s step-end infinite; }
 .question-scenario .scenario-text { padding-left: 16px; }
 @keyframes blink { 50% { opacity: 0; } }
 .question-text { font-family: "Syne", sans-serif; font-size: 26px; font-weight: 700; line-height: 1.3; margin-bottom: 36px; letter-spacing: -0.01em; }
 .options-grid { display: flex; flex-direction: column; gap: 12px; }
-.option-btn { display: flex; align-items: flex-start; gap: 16px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 20px 24px; text-align: left; cursor: pointer; transition: all 0.25s ease; position: relative; overflow: hidden; }
+.option-btn { display: flex; align-items: flex-start; gap: 16px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 20px 24px; text-align: left; cursor: pointer; transition: all 0.25s ease; }
 .option-btn:hover { border-color: var(--accent); background: var(--surface-2); transform: translateX(4px); }
 .option-btn .opt-key { flex-shrink: 0; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; background: var(--surface-2); border: 1px solid var(--border); border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 11px; font-weight: 600; color: var(--text-dim); transition: all 0.25s ease; }
 .option-btn:hover .opt-key { background: var(--accent); border-color: var(--accent); color: #fff; }
 .option-btn .opt-text { font-size: 15px; line-height: 1.5; color: var(--text); }
 .option-btn .opt-subtext { display: block; font-size: 12px; color: var(--text-dim); margin-top: 4px; }
 
+
+/* RESULTS */
 #results-section { display: none; padding: 80px 0 120px; text-align: center; }
 .results-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 60px 40px; position: relative; overflow: hidden; }
 .results-card::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
@@ -76,54 +109,45 @@ body::after { content: ""; position: fixed; inset: 0; background: repeating-line
 .results-card.level-critical::before { background: var(--accent); box-shadow: 0 0 20px rgba(255,61,61,0.5); }
 .decay-score-label { font-family: "JetBrains Mono", monospace; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 12px; }
 .decay-score { font-family: "Syne", sans-serif; font-size: 96px; font-weight: 800; line-height: 1; margin-bottom: 8px; animation: scoreReveal 1s ease; }
-@keyframes scoreReveal { from { opacity: 0; transform: scale(0.5); filter: blur(10px); } to { opacity: 1; transform: scale(1); filter: blur(0); } }
-.decay-score.low { color: var(--green); }
-.decay-score.mid { color: var(--amber); }
-.decay-score.high { color: var(--accent); }
-.decay-score.critical { color: var(--accent); text-shadow: 0 0 40px rgba(255,61,61,0.4); }
+@keyframes scoreReveal { from { opacity:0; transform:scale(0.5); filter:blur(10px); } to { opacity:1; transform:scale(1); filter:blur(0); } }
+.decay-score.low { color: var(--green); } .decay-score.mid { color: var(--amber); }
+.decay-score.high { color: var(--accent); } .decay-score.critical { color: var(--accent); text-shadow: 0 0 40px rgba(255,61,61,0.4); }
 .decay-label { font-family: "JetBrains Mono", monospace; font-size: 13px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 32px; }
-.decay-label.low { color: var(--green); }
-.decay-label.mid { color: var(--amber); }
-.decay-label.high { color: var(--accent); }
-.decay-label.critical { color: var(--accent); }
+.decay-label.low { color: var(--green); } .decay-label.mid { color: var(--amber); } .decay-label.high { color: var(--accent); } .decay-label.critical { color: var(--accent); }
 .roast-text { font-size: 18px; line-height: 1.6; color: var(--text); max-width: 520px; margin: 0 auto 40px; font-style: italic; }
-.roast-text::before { content: open-quote; }
-.roast-text::after { content: close-quote; }
+.roast-text::before { content: open-quote; } .roast-text::after { content: close-quote; }
 .breakdown { text-align: left; margin-top: 40px; padding-top: 40px; border-top: 1px solid var(--border); }
 .breakdown-title { font-family: "JetBrains Mono", monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 24px; }
-.breakdown-item { margin-bottom: 20px; }
-.breakdown-item-header { display: flex; justify-content: space-between; margin-bottom: 8px; }
-.breakdown-item-name { font-size: 13px; font-weight: 500; }
-.breakdown-item-val { font-family: "JetBrains Mono", monospace; font-size: 13px; font-weight: 600; }
+.breakdown-item { margin-bottom: 20px; } .breakdown-item-header { display: flex; justify-content: space-between; margin-bottom: 8px; }
+.breakdown-item-name { font-size: 13px; font-weight: 500; } .breakdown-item-val { font-family: "JetBrains Mono", monospace; font-size: 13px; font-weight: 600; }
 .breakdown-bar { height: 6px; background: var(--surface-2); border-radius: 3px; overflow: hidden; }
-.breakdown-bar-fill { height: 100%; border-radius: 3px; transition: width 1.5s cubic-bezier(0.22, 1, 0.36, 1); width: 0; }
-.breakdown-bar-fill.low { background: var(--green); }
-.breakdown-bar-fill.mid { background: var(--amber); }
-.breakdown-bar-fill.high { background: var(--accent); }
+.breakdown-bar-fill { height: 100%; border-radius: 3px; transition: width 1.5s cubic-bezier(0.22,1,0.36,1); width: 0; }
+.breakdown-bar-fill.low { background: var(--green); } .breakdown-bar-fill.mid { background: var(--amber); } .breakdown-bar-fill.high { background: var(--accent); }
 .result-cta { margin-top: 48px; padding: 32px; background: var(--surface-2); border-radius: 12px; border: 1px solid var(--border); }
-.result-cta p { font-size: 14px; color: var(--text-dim); line-height: 1.6; margin-bottom: 20px; }
-.result-cta p strong { color: var(--text); }
+.result-cta p { font-size: 14px; color: var(--text-dim); line-height: 1.6; margin-bottom: 20px; } .result-cta p strong { color: var(--text); }
 .cta-btn { display: inline-flex; align-items: center; gap: 8px; background: transparent; border: 1px solid var(--accent); color: var(--accent); padding: 14px 28px; font-family: "JetBrains Mono", monospace; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; border-radius: 6px; cursor: pointer; transition: all 0.3s ease; }
 .cta-btn:hover { background: var(--accent); color: #fff; }
-.restart-btn { display: inline-block; margin-top: 24px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--text-dim); cursor: pointer; background: none; border: none; text-decoration: underline; text-underline-offset: 3px; transition: color 0.2s; }
+.restart-btn { display: inline-block; margin-top: 24px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--text-dim); cursor: pointer; background: none; border: none; text-decoration: underline; text-underline-offset: 3px; }
 .restart-btn:hover { color: var(--text); }
 .recent-results { margin-top: 80px; }
-.recent-results h3 { font-family: "JetBrains Mono", monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 24px; text-align: center; }
 .recent-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 12px; }
 .recent-item { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 16px 20px; display: flex; align-items: center; justify-content: space-between; }
-.recent-info { display: flex; flex-direction: column; gap: 4px; }
-.recent-role { font-size: 13px; font-weight: 600; }
+.recent-info { display: flex; flex-direction: column; gap: 4px; } .recent-role { font-size: 13px; font-weight: 600; }
 .recent-roast { font-size: 11px; color: var(--text-dim); font-style: italic; max-width: 260px; line-height: 1.4; }
 .recent-score { font-family: "JetBrains Mono", monospace; font-size: 20px; font-weight: 800; flex-shrink: 0; margin-left: 16px; }
-@keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
-@keyframes fadeDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeUp { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:translateY(0); } }
+@keyframes fadeDown { from { opacity:0; transform:translateY(-10px); } to { opacity:1; transform:translateY(0); } }
 @media (max-width: 600px) { .hero h1 { font-size: 38px; } .question-text { font-size: 20px; } .decay-score { font-size: 64px; } .results-card { padding: 40px 24px; } .stats-bar { gap: 24px; } .recent-grid { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
 
+
 <section class="hero" id="hero-section">
   <div class="hero-badge"><span class="pulse"></span><span>Incident Simulation Active</span></div>
+  <div class="olly-container">
+    <img class="olly-hero" src="assets/olly-sleeping.png" alt="Olly sleeping on the job">
+  </div>
   <h1><span class="line-1">How much has AI</span><span class="accent">Deskilled</span> You?</h1>
   <p class="hero-sub">7 incident scenarios. Zero AI assistance.<br>Find out how much <strong>muscle memory you've lost</strong> since you started letting copilots think for you.</p>
   <button class="start-btn" onclick="startQuiz()">Run Diagnostic <span>&rarr;</span></button>
@@ -140,250 +164,185 @@ body::after { content: ""; position: fixed; inset: 0; background: repeating-line
   <div class="container" id="quiz-container"></div>
 </section>
 
-<section id="results-section">
-  <div class="container">
-    <div class="results-card" id="results-card">
-      <div class="decay-score-label">Your Skill Decay Index</div>
-      <div class="decay-score" id="decay-score"></div>
-      <div class="decay-label" id="decay-label"></div>
-      <div class="roast-text" id="roast-text"></div>
-      <div class="breakdown" id="breakdown"><div class="breakdown-title">Skill Atrophy Breakdown</div></div>
-      <div class="result-cta">
-        <p>This diagnostic is inspired by <strong>Bainbridge's Ironies of Automation</strong> &mdash; the more you automate, the worse you get at the exact moments automation fails. Read the full deep-dive on AI deskilling in SRE.</p>
+<section id="results-section"><div class="container">
+  <div class="results-card" id="results-card">
+    <div id="result-olly-container"></div>
+    <div class="decay-score-label">Your Skill Decay Index</div>
+    <div class="decay-score" id="decay-score"></div>
+    <div class="decay-label" id="decay-label"></div>
+    <div class="roast-text" id="roast-text"></div>
+    <div class="breakdown" id="breakdown"><div class="breakdown-title">Skill Atrophy Breakdown</div></div>
+    <div class="result-cta">
+        <p>This diagnostic is inspired by <strong>Bainbridge's Ironies of Automation</strong> &mdash; the more you automate, the worse you get at the exact moments automation fails.</p>
         <a class="cta-btn" href="https://signoz.io/blog" target="_blank">Read the Full Article &rarr;</a>
       </div>
-      <button class="restart-btn" onclick="restart()">&#8635; Run diagnostic again</button>
-    </div>
-    <div class="recent-results"><h3>Recent Diagnostics</h3><div class="recent-grid" id="recent-grid"></div></div>
+    <button class="restart-btn" onclick="restart()">&#8635; Run diagnostic again</button>
   </div>
-</section>
+  <div class="recent-results">
+    <h3 style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-dim);text-align:center;margin-bottom:24px;">Recent Diagnostics</h3>
+    <div class="recent-grid" id="recent-grid"></div>
+  </div>
+</div></section>
+
 <script>
-const questions = [
-  {
-    scenario: "ALERT: Pod CrashLoopBackOff on payment-service. Grafana dashboards are loading. AI assistant is offline.",
-    question: "An on-call alert fires at 3 AM. Your AI incident assistant is down. What\u2019s your first instinct?",
-    options: [
-      { text: "SSH in, check pod logs, inspect recent deploys, form a hypothesis", sub: "Old school. Muscle memory intact.", score: 0, category: "incident" },
-      { text: "Wait for the AI to come back online \u2014 it\u2019ll correlate faster than me", sub: "Outsourced your instincts.", score: 3, category: "incident" },
-      { text: "Check Slack for similar past incidents, maybe someone posted a runbook", sub: "Collaborative, but dependent.", score: 1, category: "incident" },
-      { text: "Restart the pod and go back to sleep", sub: "Bold strategy.", score: 2, category: "incident" }
-    ]
-  },
-  {
-    scenario: "CONTEXT: You\u2019re reviewing a Prometheus query someone wrote. It looks wrong but you can\u2019t articulate why.",
-    question: "When was the last time you wrote a PromQL query from scratch without autocomplete or AI suggestion?",
-    options: [
-      { text: "This week \u2014 I still write them by hand regularly", sub: "Your fingers remember.", score: 0, category: "observability" },
-      { text: "A few months ago, maybe? I mostly edit AI-generated ones now", sub: "Editing \u2260 understanding.", score: 2, category: "observability" },
-      { text: "I can\u2019t remember", sub: "The atrophy is real.", score: 3, category: "observability" },
-      { text: "I use the visual query builder exclusively", sub: "You skipped the CLI era entirely.", score: 2, category: "observability" }
-    ]
-  },
-  {
-    scenario: "INCIDENT: Latency spike across 3 microservices. Traces show normal spans. Metrics look healthy. Users are complaining.",
-    question: "The obvious signals look fine but something is clearly broken. How do you approach this?",
-    options: [
-      { text: "Correlate deploy timestamps, check network layer, inspect DNS and connection pools", sub: "You still think in systems.", score: 0, category: "debugging" },
-      { text: "Paste the symptoms into ChatGPT/Claude and see what it suggests", sub: "AI as your senior engineer.", score: 3, category: "debugging" },
-      { text: "Widen the time window on dashboards and look for patterns", sub: "Reasonable but shallow.", score: 1, category: "debugging" },
-      { text: "Escalate to the team lead \u2014 this is above my level", sub: "Was it always above your level?", score: 2, category: "debugging" }
-    ]
-  },
-  {
-    scenario: "TASK: Your team asks you to explain the full request lifecycle through your system \u2014 from load balancer to database and back.",
-    question: "Could you whiteboard your system\u2019s architecture from memory right now?",
-    options: [
-      { text: "Yes \u2014 I know every hop, every queue, every failure point", sub: "Living documentation.", score: 0, category: "architecture" },
-      { text: "Mostly, but I\u2019d need to check service mesh configs for the details", sub: "Core is there, edges are fuzzy.", score: 1, category: "architecture" },
-      { text: "I\u2019d need to pull up the AI-generated dependency map first", sub: "You\u2019re navigating with GPS in your own neighborhood.", score: 3, category: "architecture" },
-      { text: "I could describe my services, but not how they talk to each other", sub: "Islands without bridges.", score: 2, category: "architecture" }
-    ]
-  },
-  {
-    scenario: "DISCUSSION: A junior SRE asks you to review their incident postmortem. The root cause analysis looks off.",
-    question: "How confident are you in your ability to identify a flawed root cause analysis?",
-    options: [
-      { text: "Very \u2014 I\u2019ve written enough postmortems to smell a shallow one", sub: "Pattern recognition from repetition.", score: 0, category: "incident" },
-      { text: "I\u2019d run it through an AI to check the logic first", sub: "You need a second opinion from a machine.", score: 3, category: "incident" },
-      { text: "I could spot obvious issues, but subtle gaps would slip by me", sub: "Honest \u2014 and concerning.", score: 2, category: "incident" },
-      { text: "I haven\u2019t written a postmortem in a while \u2014 AI drafts them now", sub: "You stopped practicing the hardest skill.", score: 3, category: "incident" }
-    ]
-  },
-  {
-    scenario: "ALERT: OOMKilled on a service you don\u2019t own. The owning team is asleep. SLA breach in 20 minutes.",
-    question: "You\u2019re alone on-call for a service you\u2019ve never touched. Clock is ticking.",
-    options: [
-      { text: "Check resource limits, recent commits, heap dumps \u2014 escalate if I can\u2019t find it in 10", sub: "Methodical under pressure.", score: 0, category: "debugging" },
-      { text: "Bump the memory limits, add a restart policy, deal with root cause tomorrow", sub: "Duct tape SRE.", score: 2, category: "debugging" },
-      { text: "Search Slack history for past OOMs on this service", sub: "Research, not reasoning.", score: 1, category: "debugging" },
-      { text: "I\u2019d be frozen for a few minutes without AI to guide me", sub: "The 3 AM truth.", score: 3, category: "debugging" }
-    ]
-  },
-  {
-    scenario: "REFLECTION: Think about how you\u2019ve solved problems over the past 6 months compared to 2 years ago.",
-    question: "Be brutally honest: has AI made you a better or worse engineer?",
-    options: [
-      { text: "Better \u2014 I use AI as a tool but I still drive the thinking", sub: "The ideal. Are you sure?", score: 0, category: "meta" },
-      { text: "Faster, but probably not deeper. I ship more but understand less.", sub: "The productivity trap.", score: 2, category: "meta" },
-      { text: "I can\u2019t separate my thinking from AI\u2019s anymore", sub: "The most honest answer here.", score: 3, category: "meta" },
-      { text: "Worse, and I know it. But I can\u2019t stop.", sub: "Self-aware decay.", score: 3, category: "meta" }
-    ]
-  }
+// Quiz Olly images - mapped to question groups
+function getQuizOlly(type) {
+  var map = {
+    "welding": '<img class="olly-quiz" src="assets/olly-welding-front.png" alt="Olly welding" style="border-radius:12px">',
+    "thinking": '<img class="olly-quiz" src="assets/olly-thinking.png" alt="Olly thinking">',
+    "professor": '<img class="olly-quiz" src="assets/olly-professor.png" alt="Olly evaluating" style="border-radius:12px">'
+  };
+  return map[type] || map["professor"];
+}
+
+// Result Olly images - mapped to severity levels
+function getResultOlly(level) {
+  if (level === "low") return '<img class="olly-result" src="assets/olly-jedi.png" alt="Jedi Olly - skills mastered">';
+  if (level === "mid") return '<img class="olly-result" src="assets/olly-bush.png" alt="Olly hiding - skills fading" style="border-radius:16px">';
+  if (level === "high") return '<img class="olly-result" src="assets/olly-space.png" alt="Space Olly - flying without control">';
+  return '<img class="olly-result result-critical-olly" src="assets/olly-sleeping.png" alt="Olly asleep - skills fully atrophied">';
+}
+
+var questions=[
+{scenario:"ALERT: Pod CrashLoopBackOff on payment-service. Grafana dashboards are loading. AI assistant is offline.",question:"An on-call alert fires at 3 AM. Your AI incident assistant is down. What\u2019s your first instinct?",olly:"welding",options:[
+{text:"SSH in, check pod logs, inspect recent deploys, form a hypothesis",sub:"Old school. Muscle memory intact.",score:0,category:"incident"},
+{text:"Wait for the AI to come back online \u2014 it\u2019ll correlate faster than me",sub:"Outsourced your instincts.",score:3,category:"incident"},
+{text:"Check Slack for similar past incidents, maybe someone posted a runbook",sub:"Collaborative, but dependent.",score:1,category:"incident"},
+{text:"Restart the pod and go back to sleep",sub:"Bold strategy.",score:2,category:"incident"}]},
+{scenario:"CONTEXT: You\u2019re reviewing a Prometheus query someone wrote. It looks wrong but you can\u2019t articulate why.",question:"When was the last time you wrote a PromQL query from scratch without autocomplete or AI suggestion?",olly:"welding",options:[
+{text:"This week \u2014 I still write them by hand regularly",sub:"Your fingers remember.",score:0,category:"observability"},
+{text:"A few months ago, maybe? I mostly edit AI-generated ones now",sub:"Editing \u2260 understanding.",score:2,category:"observability"},
+{text:"I can\u2019t remember",sub:"The atrophy is real.",score:3,category:"observability"},
+{text:"I use the visual query builder exclusively",sub:"You skipped the CLI era entirely.",score:2,category:"observability"}]},
+{scenario:"INCIDENT: Latency spike across 3 microservices. Traces show normal spans. Metrics look healthy. Users are complaining.",question:"The obvious signals look fine but something is clearly broken. How do you approach this?",olly:"thinking",options:[
+{text:"Correlate deploy timestamps, check network layer, inspect DNS and connection pools",sub:"You still think in systems.",score:0,category:"debugging"},
+{text:"Paste the symptoms into ChatGPT/Claude and see what it suggests",sub:"AI as your senior engineer.",score:3,category:"debugging"},
+{text:"Widen the time window on dashboards and look for patterns",sub:"Reasonable but shallow.",score:1,category:"debugging"},
+{text:"Escalate to the team lead \u2014 this is above my level",sub:"Was it always above your level?",score:2,category:"debugging"}]},
+{scenario:"TASK: Your team asks you to explain the full request lifecycle through your system \u2014 from load balancer to database and back.",question:"Could you whiteboard your system\u2019s architecture from memory right now?",olly:"thinking",options:[
+{text:"Yes \u2014 I know every hop, every queue, every failure point",sub:"Living documentation.",score:0,category:"architecture"},
+{text:"Mostly, but I\u2019d need to check service mesh configs for the details",sub:"Core is there, edges are fuzzy.",score:1,category:"architecture"},
+{text:"I\u2019d need to pull up the AI-generated dependency map first",sub:"You\u2019re navigating with GPS in your own neighborhood.",score:3,category:"architecture"},
+{text:"I could describe my services, but not how they talk to each other",sub:"Islands without bridges.",score:2,category:"architecture"}]},
+{scenario:"DISCUSSION: A junior SRE asks you to review their incident postmortem. The root cause analysis looks off.",question:"How confident are you in your ability to identify a flawed root cause analysis?",olly:"professor",options:[
+{text:"Very \u2014 I\u2019ve written enough postmortems to smell a shallow one",sub:"Pattern recognition from repetition.",score:0,category:"incident"},
+{text:"I\u2019d run it through an AI to check the logic first",sub:"You need a second opinion from a machine.",score:3,category:"incident"},
+{text:"I could spot obvious issues, but subtle gaps would slip by me",sub:"Honest \u2014 and concerning.",score:2,category:"incident"},
+{text:"I haven\u2019t written a postmortem in a while \u2014 AI drafts them now",sub:"You stopped practicing the hardest skill.",score:3,category:"incident"}]},
+{scenario:"ALERT: OOMKilled on a service you don\u2019t own. The owning team is asleep. SLA breach in 20 minutes.",question:"You\u2019re alone on-call for a service you\u2019ve never touched. Clock is ticking.",olly:"professor",options:[
+{text:"Check resource limits, recent commits, heap dumps \u2014 escalate if I can\u2019t find it in 10",sub:"Methodical under pressure.",score:0,category:"debugging"},
+{text:"Bump the memory limits, add a restart policy, deal with root cause tomorrow",sub:"Duct tape SRE.",score:2,category:"debugging"},
+{text:"Search Slack history for past OOMs on this service",sub:"Research, not reasoning.",score:1,category:"debugging"},
+{text:"I\u2019d be frozen for a few minutes without AI to guide me",sub:"The 3 AM truth.",score:3,category:"debugging"}]},
+{scenario:"REFLECTION: Think about how you\u2019ve solved problems over the past 6 months compared to 2 years ago.",question:"Be brutally honest: has AI made you a better or worse engineer?",olly:"professor",options:[
+{text:"Better \u2014 I use AI as a tool but I still drive the thinking",sub:"The ideal. Are you sure?",score:0,category:"meta"},
+{text:"Faster, but probably not deeper. I ship more but understand less.",sub:"The productivity trap.",score:2,category:"meta"},
+{text:"I can\u2019t separate my thinking from AI\u2019s anymore",sub:"The most honest answer here.",score:3,category:"meta"},
+{text:"Worse, and I know it. But I can\u2019t stop.",sub:"Self-aware decay.",score:3,category:"meta"}]}
 ];
 
-const categoryLabels = { incident: "Incident Response Muscle", observability: "Observability Fluency", debugging: "Debugging Instinct", architecture: "System Mental Models", meta: "Self-Awareness" };
 
-const roasts = {
-  low: [
-    "You still think in systems, not suggestions. Bainbridge would be proud \u2014 you\u2019re proof that humans and automation can coexist without the human turning into a dashboard zombie.",
-    "Either you\u2019re genuinely sharp, or you\u2019re in denial. Either way, your incident response instincts are intact. For now."
-  ],
-  mid: [
-    "You\u2019re in the uncanny valley of deskilling \u2014 fast enough to feel competent, rusty enough to struggle when the AI can\u2019t help. The dangerous zone where you don\u2019t know what you\u2019ve forgotten.",
-    "You haven\u2019t lost the plot yet, but you\u2019re reading the SparkNotes version of your own systems. Another year of AI-assisted autopilot and that 3 AM incident might not go your way."
-  ],
-  high: [
-    "You\u2019ve traded deep understanding for dashboard confidence. When the next novel outage hits \u2014 the kind no AI has seen \u2014 you\u2019ll be staring at logs like they\u2019re written in a foreign language. Because for you, they basically are now.",
-    "Your AI assistant has become your load-bearing wall. Remove it and the whole structure wobbles. This isn\u2019t a productivity story anymore \u2014 it\u2019s a dependency one."
-  ],
-  critical: [
-    "Congratulations: you\u2019ve achieved the full Bainbridge Paradox. You\u2019ve automated yourself into the worst possible position \u2014 a human kept in the loop for the exact moments they\u2019re least prepared for.",
-    "You don\u2019t use AI as a tool. AI uses you as an approval button. When the cascading failure hits that doesn\u2019t match any pattern in the training data, you won\u2019t debug it \u2014 you\u2019ll watch it burn while refreshing the AI dashboard."
-  ]
+var categoryLabels={incident:"Incident Response Muscle",observability:"Observability Fluency",debugging:"Debugging Instinct",architecture:"System Mental Models",meta:"Self-Awareness"};
+var roasts={
+  low:["You still think in systems, not suggestions. Bainbridge would be proud.","Your incident response instincts are intact. For now."],
+  mid:["You\u2019re in the uncanny valley of deskilling \u2014 fast enough to feel competent, rusty enough to struggle when the AI can\u2019t help.","You\u2019re reading the SparkNotes version of your own systems."],
+  high:["You\u2019ve traded deep understanding for dashboard confidence. When the next novel outage hits, you\u2019ll be staring at logs like they\u2019re in a foreign language.","Your AI assistant has become your load-bearing wall."],
+  critical:["You\u2019ve achieved the full Bainbridge Paradox \u2014 automated into the worst possible position.","You don\u2019t use AI as a tool. AI uses you as an approval button."]
 };
-
-const recentDiagnostics = [
-  { role: "SRE, 6 YOE", score: 7.2, roast: "Knows how to kubectl but forgot why." },
-  { role: "Platform Eng, 4 YOE", score: 5.8, roast: "Still writes Terraform by hand. Respect." },
-  { role: "DevOps Lead, 8 YOE", score: 8.4, roast: "Automates the automation. Can\u2019t debug either." },
-  { role: "SRE, 2 YOE", score: 9.1, roast: "Never debugged without AI. Never-skilled, not deskilled." },
-  { role: "Infra Eng, 5 YOE", score: 3.4, roast: "Still SSHes into prod at 3 AM. Unbreakable." },
-  { role: "On-call Eng, 3 YOE", score: 6.7, roast: "The runbook is the only thing standing between you and chaos." }
+var recentDiagnostics=[
+  {role:"SRE, 6 YOE",score:7.2,roast:"Knows how to kubectl but forgot why."},
+  {role:"Platform Eng, 4 YOE",score:5.8,roast:"Still writes Terraform by hand. Respect."},
+  {role:"DevOps Lead, 8 YOE",score:8.4,roast:"Automates the automation. Can\u2019t debug either."},
+  {role:"SRE, 2 YOE",score:9.1,roast:"Never debugged without AI. Never-skilled."},
+  {role:"Infra Eng, 5 YOE",score:3.4,roast:"Still SSHes into prod at 3 AM. Unbreakable."},
+  {role:"On-call Eng, 3 YOE",score:6.7,roast:"The runbook is the only thing between you and chaos."}
 ];
 
-let currentQuestion = 0;
-let answers = [];
+var currentQuestion=0, answers=[];
 
-function startQuiz() {
-  document.getElementById("hero-section").style.display = "none";
-  document.getElementById("quiz-section").style.display = "block";
+function startQuiz(){
+  document.getElementById("hero-section").style.display="none";
+  document.getElementById("quiz-section").style.display="block";
   renderQuestion(0);
-  window.scrollTo({ top: 0, behavior: "smooth" });
+  window.scrollTo({top:0,behavior:"smooth"});
 }
 
-function renderQuestion(idx) {
-  const q = questions[idx];
-  const container = document.getElementById("quiz-container");
-  document.getElementById("progress-bar").style.width = ((idx) / questions.length * 100) + "%";
-  const keys = ["A", "B", "C", "D"];
-  container.innerHTML = "<div class=\"question-counter\">Question " + (idx+1) + " of " + questions.length + "</div>" +
-    "<div class=\"question-card active\">" +
-    "<div class=\"question-scenario\"><div class=\"scenario-text\">" + q.scenario + "</div></div>" +
-    "<div class=\"question-text\">" + q.question + "</div>" +
-    "<div class=\"options-grid\">" +
-    q.options.map(function(opt, i) {
-      return "<button class=\"option-btn\" onclick=\"selectOption(" + idx + "," + i + ")\">" +
-        "<span class=\"opt-key\">" + keys[i] + "</span>" +
-        "<div><span class=\"opt-text\">" + opt.text + "</span>" +
-        "<span class=\"opt-subtext\">" + opt.sub + "</span></div></button>";
-    }).join("") +
-    "</div></div>";
+function renderQuestion(idx){
+  var q=questions[idx], c=document.getElementById("quiz-container");
+  document.getElementById("progress-bar").style.width=((idx)/questions.length*100)+"%";
+  var k=["A","B","C","D"];
+  c.innerHTML='<div class="question-header"><div class="question-counter">Question '+(idx+1)+' of '+questions.length+'</div>'+getQuizOlly(q.olly)+'</div><div class="question-card active"><div class="question-scenario"><div class="scenario-text">'+q.scenario+'</div></div><div class="question-text">'+q.question+'</div><div class="options-grid">'+q.options.map(function(o,i){return'<button class="option-btn" onclick="selectOption('+idx+','+i+')"><span class="opt-key">'+k[i]+'</span><div><span class="opt-text">'+o.text+'</span><span class="opt-subtext">'+o.sub+'</span></div></button>';}).join('')+'</div></div>';
 }
 
-function selectOption(qIdx, optIdx) {
-  var q = questions[qIdx];
-  var opt = q.options[optIdx];
-  answers.push({ score: opt.score, category: opt.category });
-  if (qIdx + 1 < questions.length) {
-    currentQuestion = qIdx + 1;
+function selectOption(qi,oi){
+  var o=questions[qi].options[oi];
+  answers.push({score:o.score,category:o.category});
+  if(qi+1<questions.length){
+    currentQuestion=qi+1;
     renderQuestion(currentQuestion);
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({top:0,behavior:"smooth"});
   } else {
-    document.getElementById("progress-bar").style.width = "100%";
-    setTimeout(showResults, 400);
+    document.getElementById("progress-bar").style.width="100%";
+    setTimeout(showResults,400);
   }
 }
 
-function showResults() {
-  document.getElementById("quiz-section").style.display = "none";
-  document.getElementById("results-section").style.display = "block";
-  window.scrollTo({ top: 0, behavior: "smooth" });
-  var totalScore = answers.reduce(function(a, b) { return a + b.score; }, 0);
-  var maxScore = questions.length * 3;
-  var normalized = (totalScore / maxScore) * 10;
-  var display = normalized.toFixed(1);
-  var level, label;
-  if (normalized <= 2.5) { level = "low"; label = "Minimal Decay \u2014 Muscles Intact"; }
-  else if (normalized <= 5) { level = "mid"; label = "Moderate Decay \u2014 The Rust Is Showing"; }
-  else if (normalized <= 7.5) { level = "high"; label = "Significant Decay \u2014 AI-Dependent"; }
-  else { level = "critical"; label = "Critical Decay \u2014 Full Bainbridge Paradox"; }
-  var scoreEl = document.getElementById("decay-score");
-  var labelEl = document.getElementById("decay-label");
-  var roastEl = document.getElementById("roast-text");
-  var card = document.getElementById("results-card");
-  scoreEl.textContent = display;
-  scoreEl.className = "decay-score " + level;
-  labelEl.textContent = label;
-  labelEl.className = "decay-label " + level;
-  card.className = "results-card level-" + level;
-  var roastPool = roasts[level];
-  roastEl.textContent = roastPool[Math.floor(Math.random() * roastPool.length)];
-  var categoryScores = {};
-  var categoryCounts = {};
-  answers.forEach(function(a) {
-    if (!categoryScores[a.category]) { categoryScores[a.category] = 0; categoryCounts[a.category] = 0; }
-    categoryScores[a.category] += a.score;
-    categoryCounts[a.category] += 1;
+function showResults(){
+  document.getElementById("quiz-section").style.display="none";
+  document.getElementById("results-section").style.display="block";
+  window.scrollTo({top:0,behavior:"smooth"});
+
+  var ts=answers.reduce(function(a,b){return a+b.score;},0);
+  var ms=questions.length*3;
+  var n=(ts/ms)*10, d=n.toFixed(1);
+
+  var lv,lb;
+  if(n<=2.5){lv="low";lb="Minimal Decay \u2014 Muscles Intact";}
+  else if(n<=5){lv="mid";lb="Moderate Decay \u2014 The Rust Is Showing";}
+  else if(n<=7.5){lv="high";lb="Significant Decay \u2014 AI-Dependent";}
+  else{lv="critical";lb="Critical Decay \u2014 Full Bainbridge Paradox";}
+
+  document.getElementById("result-olly-container").innerHTML=getResultOlly(lv);
+  var se=document.getElementById("decay-score"),le=document.getElementById("decay-label");
+  var re=document.getElementById("roast-text"),cd=document.getElementById("results-card");
+  se.textContent=d; se.className="decay-score "+lv;
+  le.textContent=lb; le.className="decay-label "+lv;
+  cd.className="results-card level-"+lv;
+  var rp=roasts[lv]; re.textContent=rp[Math.floor(Math.random()*rp.length)];
+
+  var cs={},cc={};
+  answers.forEach(function(a){
+    if(!cs[a.category]){cs[a.category]=0;cc[a.category]=0;}
+    cs[a.category]+=a.score; cc[a.category]+=1;
   });
-  var breakdown = document.getElementById("breakdown");
-  var html = "<div class=\"breakdown-title\">Skill Atrophy Breakdown</div>";
-  Object.keys(categoryScores).forEach(function(cat) {
-    var avg = (categoryScores[cat] / (categoryCounts[cat] * 3)) * 10;
-    var pct = Math.round(avg * 10);
-    var barLevel = "low";
-    if (avg > 5) barLevel = "high";
-    else if (avg > 2.5) barLevel = "mid";
-    html += "<div class=\"breakdown-item\"><div class=\"breakdown-item-header\">" +
-      "<span class=\"breakdown-item-name\">" + (categoryLabels[cat] || cat) + "</span>" +
-      "<span class=\"breakdown-item-val\">" + avg.toFixed(1) + "/10</span></div>" +
-      "<div class=\"breakdown-bar\"><div class=\"breakdown-bar-fill " + barLevel + "\" data-width=\"" + pct + "\"></div></div></div>";
+  var bd=document.getElementById("breakdown");
+  var h='<div class="breakdown-title">Skill Atrophy Breakdown</div>';
+  Object.keys(cs).forEach(function(c){
+    var av=(cs[c]/(cc[c]*3))*10, pc=Math.round(av*10), bl="low";
+    if(av>5)bl="high"; else if(av>2.5)bl="mid";
+    h+='<div class="breakdown-item"><div class="breakdown-item-header"><span class="breakdown-item-name">'+(categoryLabels[c]||c)+'</span><span class="breakdown-item-val">'+av.toFixed(1)+'/10</span></div><div class="breakdown-bar"><div class="breakdown-bar-fill '+bl+'" data-width="'+pc+'"></div></div></div>';
   });
-  breakdown.innerHTML = html;
-  setTimeout(function() {
-    document.querySelectorAll(".breakdown-bar-fill").forEach(function(bar) {
-      bar.style.width = bar.dataset.width + "%";
-    });
-  }, 300);
-  var grid = document.getElementById("recent-grid");
-  grid.innerHTML = recentDiagnostics.map(function(d) {
-    var color = "var(--green)";
-    if (d.score > 5) color = "var(--amber)";
-    if (d.score > 7) color = "var(--accent)";
-    return "<div class=\"recent-item\"><div class=\"recent-info\">" +
-      "<div class=\"recent-role\">" + d.role + "</div>" +
-      "<div class=\"recent-roast\">\u201c" + d.roast + "\u201d</div></div>" +
-      "<div class=\"recent-score\" style=\"color:" + color + "\">" + d.score + "</div></div>";
+  bd.innerHTML=h;
+  setTimeout(function(){document.querySelectorAll(".breakdown-bar-fill").forEach(function(b){b.style.width=b.dataset.width+"%";});},300);
+
+  var gr=document.getElementById("recent-grid");
+  gr.innerHTML=recentDiagnostics.map(function(d){
+    var co="var(--green)"; if(d.score>5)co="var(--amber)"; if(d.score>7)co="var(--accent)";
+    return'<div class="recent-item"><div class="recent-info"><div class="recent-role">'+d.role+'</div><div class="recent-roast">\u201c'+d.roast+'\u201d</div></div><div class="recent-score" style="color:'+co+'">'+d.score+'</div></div>';
   }).join("");
 }
 
-function restart() {
-  currentQuestion = 0;
-  answers = [];
-  document.getElementById("results-section").style.display = "none";
-  document.getElementById("hero-section").style.display = "flex";
-  window.scrollTo({ top: 0, behavior: "smooth" });
+function restart(){
+  currentQuestion=0; answers=[];
+  document.getElementById("results-section").style.display="none";
+  document.getElementById("hero-section").style.display="flex";
+  window.scrollTo({top:0,behavior:"smooth"});
 }
 
-(function() {
-  var el = document.getElementById("counter-assessed");
-  var target = 1247;
-  var current = 0;
-  var step = Math.ceil(target / 40);
-  var interval = setInterval(function() {
-    current += step;
-    if (current >= target) { current = target; clearInterval(interval); }
-    el.textContent = current.toLocaleString();
-  }, 40);
+// Counter animation
+(function(){
+  var el=document.getElementById("counter-assessed"),t=1247,c=0,s=Math.ceil(t/40);
+  var iv=setInterval(function(){c+=s;if(c>=t){c=t;clearInterval(iv);}el.textContent=c.toLocaleString();},40);
 })();
 </script>
 </body>
